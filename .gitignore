@@ -1,0 +1,8 @@
+node_modules
+build
+
+commit.sh 
+demo
+deploy.md
+
+.vscode
