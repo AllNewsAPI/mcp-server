@@ -6,10 +6,11 @@ import * as fc from 'fast-check';
  *
  * **Validates: Requirements 1.3, 1.4, 1.5**
  *
- * The extractApiKey function implements the following priority:
- * 1. Authorization: Bearer <token> header (highest priority)
- * 2. apikey query parameter (fallback)
- * 3. null (if neither is present)
+ * AllNewsAPI keys are API keys (not OAuth bearer tokens). extractApiKey uses:
+ *   1. `X-API-Key` header (canonical)
+ *   2. `apikey` query parameter (AllNewsAPI's native scheme)
+ *   3. `Authorization: Bearer <key>` (fallback for bearer-only clients)
+ *   4. null when none are present
  */
 
 /**
@@ -17,17 +18,19 @@ import * as fc from 'fast-check';
  * This avoids needing the remote project's dependencies installed.
  */
 function extractApiKey(request: Request): string | null {
-  // Priority 1: Authorization Bearer header
-  const authHeader = request.headers.get('Authorization');
-  if (authHeader?.startsWith('Bearer ')) {
-    return authHeader.slice(7);
+  const apiKeyHeader = request.headers.get('X-API-Key');
+  if (apiKeyHeader?.trim()) {
+    return apiKeyHeader.trim();
   }
 
-  // Priority 2: apikey query parameter
-  const url = new URL(request.url);
-  const apiKeyParam = url.searchParams.get('apikey');
+  const apiKeyParam = new URL(request.url).searchParams.get('apikey');
   if (apiKeyParam) {
     return apiKeyParam;
+  }
+
+  const authHeader = request.headers.get('Authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    return authHeader.slice(7).trim() || null;
   }
 
   return null;
@@ -42,56 +45,79 @@ const apiKeyArb = fc
   .filter((s) => s.length > 0);
 
 describe('Property 1: API key extraction priority', () => {
-  it('Bearer header takes priority over apikey query param when both present', () => {
+  it('X-API-Key header takes priority over apikey query param and Authorization', () => {
     fc.assert(
-      fc.property(apiKeyArb, apiKeyArb, (bearerToken, queryKey) => {
+      fc.property(apiKeyArb, apiKeyArb, apiKeyArb, (headerKey, queryKey, bearerKey) => {
         const request = new Request(
-          `https://mcp.allnewsapi.com/?apikey=${encodeURIComponent(queryKey)}`,
+          `https://mcp.allnewsapi.com/mcp?apikey=${encodeURIComponent(queryKey)}`,
           {
-            headers: { Authorization: `Bearer ${bearerToken}` },
+            headers: {
+              'X-API-Key': headerKey,
+              Authorization: `Bearer ${bearerKey}`,
+            },
           },
         );
-        const result = extractApiKey(request);
-        expect(result).toBe(bearerToken);
+        expect(extractApiKey(request)).toBe(headerKey);
       }),
     );
   });
 
-  it('returns Bearer token when only header is present', () => {
+  it('apikey query param takes priority over Authorization Bearer', () => {
     fc.assert(
-      fc.property(apiKeyArb, (bearerToken) => {
-        const request = new Request('https://mcp.allnewsapi.com/', {
-          headers: { Authorization: `Bearer ${bearerToken}` },
-        });
-        const result = extractApiKey(request);
-        expect(result).toBe(bearerToken);
+      fc.property(apiKeyArb, apiKeyArb, (queryKey, bearerKey) => {
+        const request = new Request(
+          `https://mcp.allnewsapi.com/mcp?apikey=${encodeURIComponent(queryKey)}`,
+          {
+            headers: { Authorization: `Bearer ${bearerKey}` },
+          },
+        );
+        expect(extractApiKey(request)).toBe(queryKey);
       }),
     );
   });
 
-  it('returns apikey query param when no Authorization header is present', () => {
+  it('returns X-API-Key value when only that header is present', () => {
+    fc.assert(
+      fc.property(apiKeyArb, (headerKey) => {
+        const request = new Request('https://mcp.allnewsapi.com/mcp', {
+          headers: { 'X-API-Key': headerKey },
+        });
+        expect(extractApiKey(request)).toBe(headerKey);
+      }),
+    );
+  });
+
+  it('returns apikey query param when no auth headers are present', () => {
     fc.assert(
       fc.property(apiKeyArb, (queryKey) => {
         const request = new Request(
-          `https://mcp.allnewsapi.com/?apikey=${encodeURIComponent(queryKey)}`,
+          `https://mcp.allnewsapi.com/mcp?apikey=${encodeURIComponent(queryKey)}`,
         );
-        const result = extractApiKey(request);
-        expect(result).toBe(queryKey);
+        expect(extractApiKey(request)).toBe(queryKey);
+      }),
+    );
+  });
+
+  it('falls back to Authorization Bearer when it is the only credential', () => {
+    fc.assert(
+      fc.property(apiKeyArb, (bearerKey) => {
+        const request = new Request('https://mcp.allnewsapi.com/mcp', {
+          headers: { Authorization: `Bearer ${bearerKey}` },
+        });
+        expect(extractApiKey(request)).toBe(bearerKey);
       }),
     );
   });
 });
 
 describe('Property 2: Missing credentials rejection', () => {
-  it('returns null when neither Authorization header nor apikey query param is present', () => {
+  it('returns null when no credential is present', () => {
     fc.assert(
       fc.property(fc.webUrl(), (baseUrl) => {
-        // Ensure the URL has no apikey param
         const url = new URL(baseUrl);
         url.searchParams.delete('apikey');
         const request = new Request(url.toString());
-        const result = extractApiKey(request);
-        expect(result).toBeNull();
+        expect(extractApiKey(request)).toBeNull();
       }),
     );
   });
@@ -99,11 +125,10 @@ describe('Property 2: Missing credentials rejection', () => {
   it('returns null when Authorization header exists but is not Bearer scheme', () => {
     fc.assert(
       fc.property(apiKeyArb, (token) => {
-        const request = new Request('https://mcp.allnewsapi.com/', {
+        const request = new Request('https://mcp.allnewsapi.com/mcp', {
           headers: { Authorization: `Basic ${token}` },
         });
-        const result = extractApiKey(request);
-        expect(result).toBeNull();
+        expect(extractApiKey(request)).toBeNull();
       }),
     );
   });

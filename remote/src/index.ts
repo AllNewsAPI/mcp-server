@@ -17,18 +17,29 @@ function getHeaders(): Record<string, string> {
 
 /**
  * Extract the AllNewsAPI key from an incoming request.
- * Priority: Authorization Bearer header, then `apikey` query parameter.
- * Returns null when neither is present.
+ *
+ * AllNewsAPI keys are API keys (not OAuth bearer tokens), so the canonical
+ * method is the `X-API-Key` header, matching AllNewsAPI's own `apikey` auth.
+ * Priority:
+ *   1. `X-API-Key` header
+ *   2. `apikey` query parameter (AllNewsAPI's native scheme)
+ *   3. `Authorization: Bearer <key>` (fallback for clients limited to bearer tokens)
+ * Returns null when none are present.
  */
 export function extractApiKey(request: Request): string | null {
-  const authHeader = request.headers.get('Authorization');
-  if (authHeader?.startsWith('Bearer ')) {
-    return authHeader.slice(7).trim() || null;
+  const apiKeyHeader = request.headers.get('X-API-Key');
+  if (apiKeyHeader?.trim()) {
+    return apiKeyHeader.trim();
   }
 
   const apiKeyParam = new URL(request.url).searchParams.get('apikey');
   if (apiKeyParam) {
     return apiKeyParam;
+  }
+
+  const authHeader = request.headers.get('Authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    return authHeader.slice(7).trim() || null;
   }
 
   return null;
@@ -221,7 +232,7 @@ export default {
       return new Response(
         JSON.stringify({
           error:
-            'Authentication required. Provide your AllNewsAPI key via an Authorization Bearer header or an apikey query parameter.',
+            'Authentication required. Provide your AllNewsAPI key via an X-API-Key header, an apikey query parameter, or an Authorization Bearer header.',
         }),
         { status: 401, headers: { 'content-type': 'application/json' } },
       );

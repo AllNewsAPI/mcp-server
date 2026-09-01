@@ -12,7 +12,7 @@ Pick one of the two ways to connect.
 
 ### Hosted (no install)
 
-Point your client at the hosted server and pass your key as a Bearer token:
+Point your client at the hosted server and pass your API key in the `X-API-Key` header:
 
 ```json
 {
@@ -21,7 +21,7 @@ Point your client at the hosted server and pass your key as a Bearer token:
       "type": "remote",
       "url": "https://mcp.allnewsapi.com/mcp",
       "headers": {
-        "Authorization": "Bearer YOUR_API_KEY_HERE"
+        "X-API-Key": "YOUR_API_KEY_HERE"
       }
     }
   }
@@ -29,6 +29,8 @@ Point your client at the hosted server and pass your key as a Bearer token:
 ```
 
 Prefer a URL-only setup? Use `https://mcp.allnewsapi.com/mcp?apikey=YOUR_API_KEY_HERE` instead of the header.
+
+The key can be supplied three ways, in this order of precedence: the `X-API-Key` header, the `apikey` query parameter, or an `Authorization: Bearer YOUR_API_KEY_HERE` header (a fallback for clients that only support bearer tokens).
 
 ### Local (npx)
 
@@ -97,7 +99,7 @@ claude mcp add allnewsapi -- npx allnewsapi-mcp@latest --apikey YOUR_API_KEY_HER
 Or the hosted server:
 
 ```bash
-claude mcp add --transport http allnewsapi https://mcp.allnewsapi.com/mcp --header "Authorization: Bearer YOUR_API_KEY_HERE"
+claude mcp add --transport http allnewsapi https://mcp.allnewsapi.com/mcp --header "X-API-Key: YOUR_API_KEY_HERE"
 ```
 
 </details>
