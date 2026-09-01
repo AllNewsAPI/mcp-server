@@ -1,28 +1,69 @@
 {
-  "name": "allnewsapi-mcp-server",
+  "name": "allnewsapi-mcp",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A Model Context Protocol (MCP) server providing news data capabilities using AllNewsAPI with AI-powered sentiment and entity filtering",
+  "main": "build/index.js",
   "scripts": {
     "build": "tsc && chmod 755 build/index.js",
-    "inspect": "npm run build && npx @modelcontextprotocol/inspector node build/index.js --apikey API_KEY"
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "inspect": "npm run build && npx @modelcontextprotocol/inspector node build/index.js --apikey API_KEY",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "type": "module",
   "bin": {
-    "allnewsapi": "./build/index.js"
+    "allnewsapi-mcp": "./build/index.js"
   },
   "files": [
     "build"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "news",
+    "api",
+    "allnewsapi",
+    "ai",
+    "sentiment",
+    "headlines",
+    "llm"
+  ],
+  "author": "AllNewsAPI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AllNewsAPI/mcp-server.git"
+  },
+  "homepage": "https://allnewsapi.com",
+  "bugs": {
+    "url": "https://github.com/AllNewsAPI/mcp-server/issues"
+  },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.1",
-    "zod": "^3.25.42"
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "@types/node": "^22.15.29",
-    "typescript": "^5.8.3"
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "fast-check": "^4.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.68.0",
+    "vitest": "^4.1.11"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }

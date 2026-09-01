@@ -1,0 +1,336 @@
+{
+  "pbtResults": {
+    "2.5 Write property tests for AI parameter pass-through": {
+      "status": "passed",
+      "lastRunTimestamp": 1787508765199
+    },
+    "2.4 Write property tests for URL construction functions": {
+      "status": "passed",
+      "lastRunTimestamp": 1787508769021
+    },
+    "2.6 Write property tests for response formatting": {
+      "status": "passed",
+      "lastRunTimestamp": 1787508839316
+    },
+    "5.3 Write property tests for API key extraction": {
+      "status": "passed",
+      "lastRunTimestamp": 1787509004052
+    }
+  },
+  "executionHistory": {
+    "1.1 Create `src/types.ts` with constants and interfaces": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369059
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508382091
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508497221
+      }
+    ],
+    "2.1 Create `src/tools.ts` with URL building functions": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369121
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508502630
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508582593
+      }
+    ],
+    "2.2 Add response formatting functions to `src/tools.ts`": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369160
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508503332
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508583174
+      }
+    ],
+    "2.3 Add Zod schemas to `src/tools.ts`": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369197
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508504154
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508583804
+      }
+    ],
+    "2.4 Write property tests for URL construction functions": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369309
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508592975
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508855842
+      }
+    ],
+    "2.5 Write property tests for AI parameter pass-through": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369376
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508593642
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508855908
+      }
+    ],
+    "2.6 Write property tests for response formatting": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369422
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508594378
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508856510
+      }
+    ],
+    "3.1 Refactor `src/index.ts` to use shared modules": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369475
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508595211
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508857451
+      }
+    ],
+    "4. Checkpoint - Verify shared modules and stdio transport": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369512
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508874736
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509478188
+      }
+    ],
+    "5.1 Set up `remote/` directory structure": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369560
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508595939
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508858148
+      }
+    ],
+    "5.2 Implement `remote/src/index.ts` Cloudflare Worker entry point": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369623
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508873147
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509480084
+      }
+    ],
+    "5.3 Write property tests for API key extraction": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369672
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508873543
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509480473
+      }
+    ],
+    "6.1 Update `README.md` with remote transport documentation": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369738
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508881199
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509610744
+      }
+    ],
+    "7.1 Create GitHub Actions workflow and release-please config": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369804
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508882076
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509615664
+      }
+    ],
+    "7.2 Create GitHub Actions workflow for npm publishing": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369834
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508883034
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509480917
+      }
+    ],
+    "8. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508369867
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509670449
+      },
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787510831165
+      }
+    ],
+    "1. Create shared types module": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508497326
+      }
+    ],
+    "2. Create shared tools module": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508856724
+      }
+    ],
+    "3. Refactor stdio transport entry point": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787508857497
+      }
+    ],
+    "6. Update README documentation": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509616990
+      }
+    ],
+    "7. Add release automation": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787509618802
+      }
+    ],
+    "5. Create remote Cloudflare Worker project": [
+      {
+        "executionId": "d26743e3-48d9-4fe1-8303-d1fbf5f4ee08",
+        "chatSessionId": "sess_923d3165-ccef-4ac3-bc12-3bc4c5f33a36",
+        "timestamp": 1787510950442
+      }
+    ]
+  }
+}

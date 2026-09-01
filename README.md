@@ -1,12 +1,15 @@
 # AllNewsAPI MCP
 
-A Model Context Protocol (MCP) server that provides news data capabilities using [AllNewsAPI](https://allnewsapi.com/). This server enables LLMs to search for news articles, get top headlines, and access comprehensive news data with advanced filtering options.
+A Model Context Protocol (MCP) server that provides news data capabilities using [AllNewsAPI](https://allnewsapi.com/). This server enables LLMs to search for news articles, get top headlines, check API usage, and access comprehensive news data with advanced filtering options including AI-powered sentiment and entity analysis.
 
 ### Key Features
 
 - **Comprehensive news search**. Access news articles with advanced filtering by date, language, country, category, and more.
 - **Real-time headlines**. Get the latest top headlines from around the world with customizable parameters.
+- **AI-powered filtering**. Filter articles by AI-analyzed sentiment, entity names, and entity types.
+- **Usage monitoring**. Check your API usage, plan limits, and remaining quota.
 - **LLM-optimized responses**. Clean, formatted output designed for easy consumption by language models.
+- **Multiple transports**. Connect locally via stdio or remotely via the hosted HTTP endpoint.
 
 ### Requirements
 - Node.js 18 or newer
@@ -16,6 +19,44 @@ A Model Context Protocol (MCP) server that provides news data capabilities using
 ### Getting started
 
 First, get your API key from [AllNewsAPI](https://allnewsapi.com/) and install the AllNewsAPI MCP server with your client.
+
+#### Remote (Hosted) Transport
+
+Connect directly to the hosted MCP server at `https://mcp.allnewsapi.com/mcp` without running anything locally.
+
+**Authentication methods (remote):**
+
+1. **Authorization Bearer header** (recommended):
+   Pass your API key via the `Authorization` header:
+   ```
+   Authorization: Bearer YOUR_API_KEY_HERE
+   ```
+
+2. **Query parameter**:
+   Append `?apikey=YOUR_API_KEY_HERE` to the connection URL:
+   ```
+   https://mcp.allnewsapi.com/mcp?apikey=YOUR_API_KEY_HERE
+   ```
+
+When both are provided, the Authorization header takes priority.
+
+**Remote config** for MCP clients that support HTTP transport:
+
+```json
+{
+  "mcpServers": {
+    "allnewsapi": {
+      "type": "remote",
+      "url": "https://mcp.allnewsapi.com/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}
+```
+
+#### Local (stdio) Transport
 
 **Standard config** works in most of the tools:
 
@@ -87,7 +128,7 @@ Follow Windsurf MCP [documentation](https://docs.windsurf.com/windsurf/cascade/m
 
 The AllNewsAPI MCP server supports the following configuration options:
 
-**API Key Configuration**
+**API Key Configuration (stdio transport)**
 
 You can provide your AllNewsAPI key in two ways:
 
@@ -101,6 +142,16 @@ npx allnewsapi-mcp@latest --apikey YOUR_API_KEY_HERE
 export ALLNEWSAPI_KEY=YOUR_API_KEY_HERE
 npx allnewsapi-mcp@latest
 ```
+
+**API Key Configuration (remote transport)**
+
+For the remote hosted server at `https://mcp.allnewsapi.com/mcp`:
+
+1. **Authorization header** (recommended):
+   Include `Authorization: Bearer YOUR_API_KEY_HERE` in request headers.
+
+2. **Query parameter**:
+   Append `?apikey=YOUR_API_KEY_HERE` to the URL.
 
 ### Local Installation
 
@@ -117,7 +168,7 @@ npm install
 # Build the project
 npm run build
 
-# Run the server
+# Run the server (stdio transport)
 node build/index.js --apikey YOUR_API_KEY_HERE
 ```
 
@@ -143,6 +194,9 @@ node build/index.js --apikey YOUR_API_KEY_HERE
     - `page` (number, optional): Page number for pagination (default: 1)
     - `sortby` (string, optional): Sort results by 'publishedAt' or 'relevance' (default: 'publishedAt')
     - `publisher` (string, optional): Filter by specific publisher(s)
+    - `ai_sentiment` (string, optional): Filter by AI-analyzed sentiment (e.g., 'positive', 'negative', 'neutral')
+    - `ai_entity_name` (string, optional): Filter by entity name detected in articles
+    - `ai_entity_type` (string, optional): Filter by entity type (e.g., 'person', 'organization', 'location')
   - Read-only: **true**
 
 - **headlines**
@@ -153,9 +207,48 @@ node build/index.js --apikey YOUR_API_KEY_HERE
     - `category` (string, optional): Category to filter by (e.g., 'business', 'technology', 'sports')
     - `max` (number, optional): Number of articles to return, 1-100 (default: 5)
     - `lang` (string, optional): Language code of the articles (e.g., 'en', 'fr', 'de')
+    - `ai_sentiment` (string, optional): Filter by AI-analyzed sentiment (e.g., 'positive', 'negative', 'neutral')
+    - `ai_entity_name` (string, optional): Filter by entity name detected in articles
+    - `ai_entity_type` (string, optional): Filter by entity type (e.g., 'person', 'organization', 'location')
   - Read-only: **true**
 
 </details>
+
+<details>
+<summary><b>Usage monitoring</b></summary>
+
+- **usage**
+  - Title: Get API usage statistics
+  - Description: Check your current API plan, usage limits, and remaining quota
+  - Parameters: None
+  - Response fields:
+    - `plan`: Your current API plan name
+    - `requestsUsed24Hours`: Number of API requests used in the last 24 hours
+    - `requestsLimit24Hours`: Maximum allowed requests in a 24-hour period
+    - `requestsRemaining24Hours`: Remaining requests available in the current 24-hour period
+    - `requestsUsed30Days`: Total API requests used in the last 30 days
+  - Read-only: **true**
+
+</details>
+
+### AI-Powered Filtering
+
+The `ai_sentiment`, `ai_entity_name`, and `ai_entity_type` parameters allow you to filter articles using AI-analyzed metadata:
+
+| Parameter | Description | Example values |
+|-----------|-------------|----------------|
+| `ai_sentiment` | Filter by the overall sentiment of the article | `positive`, `negative`, `neutral` |
+| `ai_entity_name` | Filter by a named entity found in the article | `Apple`, `United Nations`, `Tokyo` |
+| `ai_entity_type` | Filter by the type of entity | `person`, `organization`, `location` |
+
+These parameters are available on both the `search-news` and `headlines` tools.
+
+**Response enrichment**: When articles are returned, they may include additional AI-analyzed fields:
+
+- **AI Sentiment**: The overall sentiment classification of the article
+- **AI Sentiment Scores**: Breakdown of positive, negative, and neutral confidence scores
+- **AI Entities**: Named entities detected in the article with their types
+- **AI Summary**: A concise AI-generated summary of the article content
 
 ### Supported Parameters
 
@@ -210,6 +303,9 @@ Once you have connected your MCP client to the AllNewsAPI server, you can ask na
 - "Show me top business headlines from the past week"
 - "Search for cryptocurrency news in English from the last month"
 - "Get sports headlines from Canada and Australia"
+- "Find positive news about renewable energy" (using AI sentiment filtering)
+- "Show me articles mentioning Apple as an organization" (using AI entity filtering)
+- "Check my API usage and remaining quota"
 
 The server will validate all parameters, connect to the AllNewsAPI, and return formatted results that are easy to read and understand.
 
@@ -218,17 +314,30 @@ The server will validate all parameters, connect to the AllNewsAPI, and return f
 The server includes comprehensive error handling:
 
 - **API Key validation**: Clear error messages if no API key is provided
+- **Authentication errors** (remote): Descriptive error when neither Authorization header nor apikey parameter is present
 - **Parameter validation**: All parameters are validated against official AllNewsAPI supported values
 - **Network error handling**: Graceful handling of API connection issues
 - **Rate limit handling**: Proper error messages for API rate limits
+
+### API Base URL
+
+All API requests are sent to `https://api.allnewsapi.com`. The endpoints used are:
+
+| Endpoint | Path |
+|----------|------|
+| Search | `https://api.allnewsapi.com/search` |
+| Headlines | `https://api.allnewsapi.com/headlines` |
+| Usage | `https://api.allnewsapi.com/usage` |
 
 ### Technical Implementation
 
 The server is built with TypeScript and the Model Context Protocol SDK. Key features include:
 
+- **Dual transport support**: stdio for local usage and HTTP for remote connections
+- **Shared tool logic**: Common tool definitions in `src/tools.ts` used by both transports
 - **ES module support** with top-level await
 - **Comprehensive error handling** with informative messages
 - **Parameter validation** against official supported values
 - **Clean formatting** of API responses for LLM consumption
 - **Flexible configuration** supporting multiple API key methods
- 
+- **AI enrichment support** in both query parameters and response formatting

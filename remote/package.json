@@ -1,0 +1,22 @@
+{
+  "name": "allnewsapi-mcp-remote",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "agents": "^0.22.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250525.0",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.16.0"
+  }
+}
