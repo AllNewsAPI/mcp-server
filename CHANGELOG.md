@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.1...allnewsapi-mcp-v1.1.2) (2026-09-01)
+
+
+### Miscellaneous Chores
+
+* release 1.1.2 ([dcda054](https://github.com/AllNewsAPI/mcp-server/commit/dcda054b9abfb5da3f98d4147da962db9111a4d5))
+
 ## [1.1.1](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.0...allnewsapi-mcp-v1.1.1) (2026-09-01)
 
 
