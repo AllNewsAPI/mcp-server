@@ -1,13 +1,13 @@
-name: Publish to npm
+name: Publish to npm (manual)
 
+# Manual fallback for (re)publishing a specific tag to npm.
+# The automatic publish on release happens in release.yml; use this only to
+# recover from a failed publish or to republish an existing release tag.
 on:
-  push:
-    tags:
-      - 'v*'
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag to publish (e.g. v1.0.0)'
+        description: 'Tag to publish (e.g. allnewsapi-mcp-v1.1.0)'
         required: true
         type: string
 
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ inputs.tag }}
 
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
