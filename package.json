@@ -1,6 +1,6 @@
 {
   "name": "allnewsapi-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Model Context Protocol (MCP) server providing news data capabilities using AllNewsAPI with AI-powered sentiment and entity filtering",
   "main": "build/index.js",
   "scripts": {
