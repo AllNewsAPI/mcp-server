@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.3...allnewsapi-mcp-v1.1.4) (2026-09-06)
+
+
+### Bug Fixes
+
+* correct GitHub org casing in MCP Registry namespace ([2ff8081](https://github.com/AllNewsAPI/mcp-server/commit/2ff8081ddcf43ff93e70a1408204b5974da73ba1))
+
 ## [1.1.3](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.2...allnewsapi-mcp-v1.1.3) (2026-09-06)
 
 
