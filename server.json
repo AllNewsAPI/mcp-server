@@ -3,7 +3,7 @@
   "name": "io.github.AllNewsAPI/mcp-server",
   "title": "AllNewsAPI",
   "description": "Live news search, historical news, and top headlines with AI analysis and entity filtering",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "websiteUrl": "https://allnewsapi.com",
   "repository": {
     "url": "https://github.com/AllNewsAPI/mcp-server",
@@ -14,7 +14,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "allnewsapi-mcp",
-      "version": "1.1.4",
+      "version": "1.1.5",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
