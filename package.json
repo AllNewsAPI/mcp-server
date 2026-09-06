@@ -1,6 +1,6 @@
 {
   "name": "allnewsapi-mcp",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Get access to real-time and historical news data including top headlines from global sources via AllNewsAPI. Supports multiple filter options including keyword search, category, language and more",
   "mcpName": "io.github.AllNewsAPI/mcp-server",
   "main": "build/index.js",

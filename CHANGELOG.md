@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.9](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.8...allnewsapi-mcp-v1.1.9) (2026-09-06)
+
+
+### Bug Fixes
+
+* shorten server.json description to fit registry limit ([7764142](https://github.com/AllNewsAPI/mcp-server/commit/7764142731e2a5d6563e9e957ebaa06d975494c2))
+
 ## [1.1.8](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.7...allnewsapi-mcp-v1.1.8) (2026-09-06)
 
 

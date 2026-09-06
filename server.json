@@ -3,7 +3,7 @@
   "name": "io.github.AllNewsAPI/mcp-server",
   "title": "AllNewsAPI",
   "description": "Get access to real-time and historical news data including top headlines from global sources",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "websiteUrl": "https://allnewsapi.com",
   "repository": {
     "url": "https://github.com/AllNewsAPI/mcp-server",
@@ -14,7 +14,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "allnewsapi-mcp",
-      "version": "1.1.8",
+      "version": "1.1.9",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
