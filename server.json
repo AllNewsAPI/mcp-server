@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.AllNewsAPI/mcp-server",
   "title": "AllNewsAPI",
-  "description": "Live news search, historical news, and top headlines with AI analysis and entity filtering",
+  "description": "Get access to real-time news, historical news, and top headlines from global sources via AllNewsAPI",
   "version": "1.1.6",
   "websiteUrl": "https://allnewsapi.com",
   "repository": {

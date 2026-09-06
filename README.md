@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/allnewsapi-mcp)](https://www.npmjs.com/package/allnewsapi-mcp)
 
-Give your AI assistant live news. This [Model Context Protocol](https://modelcontextprotocol.io/) server lets MCP clients (Claude, Cursor, VS Code, Windsurf, and others) search news articles, fetch top headlines, and check your API usage through [AllNewsAPI](https://allnewsapi.com/).
+Get access to real-time news, historical news, and top headlines from global sources via [AllNewsAPI](https://allnewsapi.com/). This [Model Context Protocol](https://modelcontextprotocol.io/) server lets MCP clients (Claude, Cursor, VS Code, Windsurf, and others) search news articles, fetch top headlines, and check your API usage.
 
 You'll need an API key — get one at [allnewsapi.com](https://allnewsapi.com/).
 
