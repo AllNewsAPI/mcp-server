@@ -225,8 +225,93 @@ function createServer(apiKey: string): McpServer {
   return server;
 }
 
+const GLAMA_CLAIM_ROUTE = '/.well-known/glama.json';
+
+// Glama's ownership-verification crawler issues a public, unauthenticated
+// GET request to this well-known path expecting a static JSON claim token.
+// It must be served before the API-key gate below, since it can't supply
+// an AllNewsAPI key.
+const GLAMA_CLAIM_BODY = JSON.stringify({
+  $schema: 'https://glama.ai/mcp/schemas/connector.json',
+  claim: 'glama_claim_S5cWBGZfr-FdDXv3JcMC2BWwXO9NIfBH',
+});
+
+const SERVER_CARD_ROUTE = '/.well-known/mcp/server-card.json';
+
+// Static "server card" (proposed MCP discovery convention, also used by
+// Smithery as an explicit scan-bypass fallback — see SUBMISSIONS.md). Lets
+// registries and directories read our metadata and tool list without an
+// authenticated tools/list round trip, since this endpoint requires an
+// AllNewsAPI key per request. Keep this in sync with the tool definitions
+// registered in createServer() above.
+const SERVER_CARD_BODY = JSON.stringify({
+  $schema: 'https://modelcontextprotocol.io/schemas/server-card/v1.0',
+  version: '1.0',
+  protocolVersion: '2025-06-18',
+  serverInfo: {
+    name: 'AllNewsAPI',
+    version: VERSION,
+    description:
+      'Get access to real-time and historical news data including top headlines from global sources via AllNewsAPI. Supports multiple filter options including keyword search, category, language and more',
+    homepage: 'https://allnewsapi.com',
+  },
+  transport: {
+    type: 'streamable-http',
+    url: `https://mcp.allnewsapi.com${MCP_ROUTE}`,
+  },
+  capabilities: {
+    tools: true,
+    resources: false,
+    prompts: false,
+  },
+  tools: [
+    {
+      name: 'search-news',
+      description:
+        'Search for news articles using various parameters including keywords, date ranges, and filters',
+    },
+    {
+      name: 'headlines',
+      description: 'Get top headlines with optional filtering by country, category, and language',
+    },
+    {
+      name: 'usage',
+      description: 'Check your current API plan, usage limits, and remaining quota',
+    },
+  ],
+  authentication: {
+    type: 'api_key',
+    alternative_methods: [
+      { type: 'header', header: 'X-API-Key' },
+      { type: 'query_param', param: 'apikey' },
+      { type: 'header', header: 'Authorization', scheme: 'Bearer' },
+    ],
+  },
+});
+
 export default {
   fetch(request: Request, env: Env, ctx: ExecutionContext): Response | Promise<Response> {
+    const pathname = new URL(request.url).pathname;
+
+    if (pathname === GLAMA_CLAIM_ROUTE) {
+      return new Response(GLAMA_CLAIM_BODY, {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      });
+    }
+
+    if (pathname === SERVER_CARD_ROUTE) {
+      return new Response(SERVER_CARD_BODY, {
+        status: 200,
+        headers: {
+          'content-type': 'application/json',
+          'x-content-type-options': 'nosniff',
+          'cache-control': 'public, max-age=3600',
+          'access-control-allow-origin': '*',
+        },
+      });
+    }
+
     const apiKey = extractApiKey(request);
     if (!apiKey) {
       return new Response(
