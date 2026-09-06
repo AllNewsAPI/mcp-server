@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.2...allnewsapi-mcp-v1.1.3) (2026-09-06)
+
+
+### Bug Fixes
+
+* trigger release to validate MCP Registry publishing pipeline ([c71a9e9](https://github.com/AllNewsAPI/mcp-server/commit/c71a9e9973d83ac683d6a07d9aa5419a59e2a934))
+
 ## [1.1.2](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.1...allnewsapi-mcp-v1.1.2) (2026-09-01)
 
 
