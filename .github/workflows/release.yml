@@ -64,6 +64,26 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # A freshly published npm version can take a few seconds to propagate
+      # to registry.npmjs.org's CDN. The MCP Registry validates the package
+      # version against npm at publish time, so poll until npm actually
+      # serves it before handing off to mcp-publisher — otherwise publish
+      # intermittently 404s on a version that exists but hasn't propagated.
+      - name: Wait for npm version to propagate
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          PKG_NAME=$(node -p "require('./package.json').name")
+          for i in $(seq 1 10); do
+            if npm view "${PKG_NAME}@${PKG_VERSION}" version 2>/dev/null | grep -qx "${PKG_VERSION}"; then
+              echo "npm registry has ${PKG_NAME}@${PKG_VERSION}"
+              exit 0
+            fi
+            echo "Waiting for ${PKG_NAME}@${PKG_VERSION} to appear on npm (attempt ${i}/10)..."
+            sleep 6
+          done
+          echo "::error::${PKG_NAME}@${PKG_VERSION} did not appear on npm after waiting."
+          exit 1
+
       # Publish the same release to the official MCP Registry so listings
       # (and everything that ingests from it) stay in sync with npm.
       - name: Install mcp-publisher
