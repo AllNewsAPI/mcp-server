@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.7](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.6...allnewsapi-mcp-v1.1.7) (2026-09-06)
+
+
+### Bug Fixes
+
+* sharpen MCP server description ([26f2c7a](https://github.com/AllNewsAPI/mcp-server/commit/26f2c7a3a4d20dc014d7a832bd0a296f70e9a622))
+
 ## [1.1.6](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.5...allnewsapi-mcp-v1.1.6) (2026-09-06)
 
 
