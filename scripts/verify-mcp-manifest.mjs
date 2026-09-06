@@ -6,6 +6,11 @@
  *   - package.json#version === server.json#version
  *   - package.json#version === server.json#packages[0].version
  *
+ * Note: description text is intentionally NOT checked for equality.
+ * The Official MCP Registry rejects any server.json#description over
+ * 100 characters (HTTP 422), so server.json carries a shortened variant
+ * while package.json/README carry the fuller marketing copy.
+ *
  * Run automatically in CI before publishing (see .github/workflows/release.yml).
  * Run locally with `npm run verify:mcp`.
  */
@@ -24,6 +29,17 @@ const pkg = readJson('package.json');
 const server = readJson('server.json');
 
 const errors = [];
+
+const MAX_REGISTRY_DESCRIPTION_LENGTH = 100;
+if (
+  typeof server.description === 'string' &&
+  server.description.length > MAX_REGISTRY_DESCRIPTION_LENGTH
+) {
+  errors.push(
+    `server.json#description is ${server.description.length} characters, but the Official MCP ` +
+      `Registry rejects descriptions over ${MAX_REGISTRY_DESCRIPTION_LENGTH} (HTTP 422).`,
+  );
+}
 
 if (!pkg.mcpName) {
   errors.push('package.json is missing "mcpName".');
