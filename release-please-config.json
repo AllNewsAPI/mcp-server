@@ -2,7 +2,19 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "allnewsapi-mcp"
+      "package-name": "allnewsapi-mcp",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "server.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "server.json",
+          "jsonpath": "$.packages[0].version"
+        }
+      ]
     }
   }
 }

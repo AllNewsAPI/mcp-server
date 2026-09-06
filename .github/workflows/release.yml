@@ -40,6 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write # required for OIDC auth to the MCP Registry
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
@@ -50,7 +51,27 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+
+      # Fails the build if server.json (name/version) has drifted from
+      # package.json (mcpName/version), so a stale MCP Registry manifest is
+      # never published alongside a new npm release.
+      - name: Verify MCP manifest is in sync
+        run: npm run verify:mcp
+
       - run: npm run build
-      - run: npm publish --access public
+      - name: Publish to npm
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish the same release to the official MCP Registry so listings
+      # (and everything that ingests from it) stay in sync with npm.
+      - name: Install mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Authenticate to MCP Registry
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish to MCP Registry
+        run: ./mcp-publisher publish
