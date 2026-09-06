@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.6](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.5...allnewsapi-mcp-v1.1.6) (2026-09-06)
+
+
+### Bug Fixes
+
+* harden npm propagation wait for MCP Registry publish ([cdc5bb3](https://github.com/AllNewsAPI/mcp-server/commit/cdc5bb3bce785fbccfacc686ed10481746db6e46))
+
 ## [1.1.5](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.4...allnewsapi-mcp-v1.1.5) (2026-09-06)
 
 
