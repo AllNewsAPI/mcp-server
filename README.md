@@ -194,3 +194,7 @@ Full lists of accepted values live in the AllNewsAPI docs:
 - [Languages](https://allnewsapi.com/docs/api/languages)
 - [Categories](https://allnewsapi.com/docs/api/categories)
 - [Regions](https://allnewsapi.com/docs/api/regions)
+
+## License
+
+MIT © [AllNewsAPI](https://allnewsapi.com) — see [LICENSE](LICENSE) for details.
