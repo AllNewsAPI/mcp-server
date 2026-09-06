@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.8](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.7...allnewsapi-mcp-v1.1.8) (2026-09-06)
+
+
+### Bug Fixes
+
+* update MCP description and add Smithery server-card route ([24ed04f](https://github.com/AllNewsAPI/mcp-server/commit/24ed04fd9e97cbcb1dc98f02c9b70ba9edf73820))
+
 ## [1.1.7](https://github.com/AllNewsAPI/mcp-server/compare/allnewsapi-mcp-v1.1.6...allnewsapi-mcp-v1.1.7) (2026-09-06)
 
 
