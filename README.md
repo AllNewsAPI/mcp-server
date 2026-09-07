@@ -1,6 +1,9 @@
 # AllNewsAPI MCP
 
 [![npm](https://img.shields.io/npm/v/allnewsapi-mcp)](https://www.npmjs.com/package/allnewsapi-mcp)
+[![AllNewsAPI/mcp-server MCP server](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server/badges/score.svg)](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server)
+
+[![AllNewsAPI/mcp-server MCP server](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server/badges/card.svg)](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server)
 
 Get access to real-time and historical news data including top headlines from global sources via [AllNewsAPI](https://allnewsapi.com/). Supports multiple filter options including keyword search, category, language and more. This [Model Context Protocol](https://modelcontextprotocol.io/) server lets MCP clients (Claude, Cursor, VS Code, Windsurf, and others) search news articles, fetch top headlines, and check your API usage.
 
