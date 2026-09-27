@@ -1,6 +1,7 @@
 # AllNewsAPI MCP
 
 [![npm](https://img.shields.io/npm/v/allnewsapi-mcp)](https://www.npmjs.com/package/allnewsapi-mcp)
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/allnewsapi/mcp-server)
 [![AllNewsAPI/mcp-server MCP server](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server/badges/score.svg)](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server)
 
 [![AllNewsAPI/mcp-server MCP server](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server/badges/card.svg)](https://glama.ai/mcp/servers/AllNewsAPI/mcp-server)
